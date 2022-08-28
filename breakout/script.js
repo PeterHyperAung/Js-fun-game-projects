@@ -1,5 +1,6 @@
 const grid = document.querySelector(".grid");
 const scoreDisplay = document.querySelector(".score");
+const startBtn = document.querySelector(".start.btn");
 const blockWidth = 100;
 const blockHeight = 20;
 const boardWidth = 560;
@@ -113,7 +114,10 @@ function moveBall() {
   drawBall();
 }
 
-timerId = setInterval(moveBall, 15);
+function init() {
+  timerId = setInterval(moveBall, 15);
+}
+startBtn.addEventListener("click", init);
 
 // check for collisons
 
@@ -135,9 +139,10 @@ function checkForCollisions() {
 
       // check for win
       if (blocks.length === 0) {
-        scoreDisplay.innerHTML = "You Win! Your final score " + score;
+        scoreDisplay.innerHTML = "You Win! Your final score is " + score;
         clearInterval(timerId);
         document.removeEventListener("keydown", moveUser);
+        startBtn.removeEventListener("click", init);
       }
     }
   }
@@ -153,6 +158,7 @@ function checkForCollisions() {
     clearInterval(timerId);
     scoreDisplay.innerHTML = "You lose";
     document.removeEventListener("keydown", moveUser);
+    startBtn.removeEventListener("click", init);
   }
 
   // check for user collisions
