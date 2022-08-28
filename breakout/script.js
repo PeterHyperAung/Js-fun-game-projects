@@ -172,7 +172,7 @@ function checkForCollisions() {
   }
 }
 
-function changeDirection(x, y, changeX, changeY) {
+function changeDirection() {
   if (xDirection === 2 && yDirection === 2) {
     yDirection = -2;
     return;
